@@ -34,8 +34,8 @@ jobs:
           name: Mocha-Test-Result
           path: test-results.xml
 
-  another-job:
-    name: Another Job
+  code-coverage:
+    name: Code Coverage
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -43,8 +43,15 @@ jobs:
       - name: Setup NodeJS Version
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 18
       - name: Install Dependencies
         run: npm install
-      - name: Run Some Other Task
-        run: echo "Running another task"
+      - name: Run Code Coverage
+        run: npm run code-coverage
+        continue-on-error: true  # Prevent job from failing if this step fails
+      - name: Upload Code Coverage Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: Code-Coverage-Result
+          path: coverage
+          retention-days: 5
