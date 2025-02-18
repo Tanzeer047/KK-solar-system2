@@ -1,0 +1,13 @@
+name: Check for New Files in New Folder
+
+on:
+  push:
+    paths:
+      - 'new-folder/**'
+
+jobs:
+  check-new-files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
