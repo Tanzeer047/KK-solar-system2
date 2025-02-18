@@ -1,9 +1,7 @@
 name: Origin Repository Workflow
 
-on:
-  push:
-    branches:
-      - main
+on: workflow_dispatch
+    
 
 jobs:
   trigger-workflow:
